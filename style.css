@@ -287,28 +287,3 @@ h1 {
 #chat-send-btn:active {
   transform: translateY(1px);
 }
-
-body::before,
-body::after {
-  content: "";
-  position: fixed;
-  width: 500px;
-  height: 500px;
-  border-radius: 20%;
-  filter: blur(50px);
-  opacity: 0.4;
-  pointer-events: none;
-  mix-blend-mode: screen;
-}
-
-body::before {
-  background: #ff9a9e;
-  top: -150px;
-  left: -150px;
-}
-
-body::after {
-  background: #86bff8;
-  bottom: -150px;
-  right: -150px;
-}
