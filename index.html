@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>LoveDays and Messages</title>
+  <script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+ <div class="page-wrapper">
+    <div class="panel panel-main">
+      <h1>LoveDays and Messages</h1>
+
+       <p class="days-label">Mình đã ở cạnh nhau được:</p>
+      <h2 id="days-count">0 ngày ruii</h2>
+    </div>
+    
+
+   <div class="panel panel-quote">
+      <h2>Đôi lời gửi tới em...</h2>
+      <div class="quote-box">
+        <p id="quote-text">Chờ anh chútt...</p>
+        <p id="quote-author"></p>
+      </div>
+      <button id="refresh-btn">Đổi lời nhắn khác</button>
+    </div>
+
+    <div class="panel panel-chat">
+      <h2>Em muốn nói với anh điều gì hong</h2>
+      <div id="chat-messages" class="chat-messages"></div>
+      <div class="chat-input-row">
+        <input
+          type="text"
+          id="chat-input"
+          placeholder="Nhập vô đây nè..."
+        />
+        <button id="chat-send-btn">Gửi</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="script.js"></script>
+
+</body>
+</html>
