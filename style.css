@@ -16,7 +16,7 @@ body {
 
   background: linear-gradient(135deg, #ecb7e4, #e449b3, #f3b6d9);
   background-size: 400% 400%;
-  animation: bgGradient 18s ease infinite;
+  animation: bgGradient 20s ease infinite;
 }
 
 @keyframes bgGradient {
@@ -93,7 +93,7 @@ body {
   padding: 6px 12px;
   border-radius: 999px;
   border: none;
-  background: #ffd166;
+  background: #f78442;
   color: #333;
   font-weight: 600;
   width: 100%;       
@@ -144,7 +144,7 @@ body {
   padding: 8px 12px;
   border-radius: 999px;
   border: none;
-  background: #617972;
+  background: #8472e7;
   color: #969292;
   font-weight: 600;
   font-size: 14px;
