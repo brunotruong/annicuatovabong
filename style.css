@@ -287,3 +287,80 @@ h1 {
 #chat-send-btn:active {
   transform: translateY(1px);
 }
+
+/* Lớp phủ toàn màn khi mở web */
+#id-card-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(18px);         /* làm nền phía sau mờ */
+  background: rgba(0, 0, 0, 0.25);     /* hơi tối một chút */
+  z-index: 1000;
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(40px) scale(0.9);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Khi thêm class .show sẽ hiện thẻ lên */
+#id-card-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+/* Thẻ ID: tỉ lệ gần giống thẻ ATM */
+.id-card {
+  width: min(320px, 86vw);             /* nhỏ hơn chiều ngang màn */
+  aspect-ratio: 1.586 / 1;             /* xấp xỉ 101.6 x 64mm */
+  border-radius: 20px;
+  padding: 16px 18px;
+  box-sizing: border-box;
+
+  background: radial-gradient(circle at 0% 0%, #ffe29f 0, #ff719a 35%, #8ec5fc 100%);
+  box-shadow: 0 24px 40px rgba(0, 0, 0, 0.45);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Header trên thẻ */
+.id-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.id-logo {
+  font-size: 20px;
+}
+
+.id-title {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+/* Phần nội dung chính */
+.id-card-body {
+  margin-top: 12px;
+}
+
+.id-name {
+  margin: 0 0 4px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.id-subtitle {
+  margin: 0;
+  font-size: 13px;
+  opacity: 0.9;
+}

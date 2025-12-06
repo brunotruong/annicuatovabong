@@ -10,12 +10,27 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- ID Card overlay -->
+  <div id="id-card-overlay">
+    <div class="id-card">
+      <div class="id-card-header">
+        <span class="id-logo">❤</span>
+        <span class="id-title">Love ID</span>
+      </div>
+      <div class="id-card-body">
+        <p class="id-name">Tồ &amp; Bống</p>
+        <p class="id-subtitle">Since 06.05.2025</p>
+      </div>
+    </div>
+  </div>
+
  <div class="page-wrapper">
     <div class="panel panel-main">
       <h1>LoveDays and Messages</h1>
 
        <p class="days-label">Mình đã ở cạnh nhau được:</p>
       <h2 id="days-count">0 ngày ruii</h2>
+      </div>
     </div>
     
 
@@ -24,6 +39,7 @@
       <div class="quote-box">
         <p id="quote-text">Chờ anh chútt...</p>
         <p id="quote-author"></p>
+        <div class="panel panel-quote popup-box"></div>
       </div>
       <button id="refresh-btn">Đổi lời nhắn khác</button>
     </div>
@@ -39,7 +55,7 @@
         />
         <button id="chat-send-btn">Gửi</button>
       </div>
-    </div>
+    </div> </div>
   </div>
 
   <script type="module" src="script.js"></script>
