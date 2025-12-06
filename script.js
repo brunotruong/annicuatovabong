@@ -138,6 +138,33 @@ window.addEventListener("DOMContentLoaded", () => {
   });
   setupChatBoxFirestore(); 
 });
+function showIdCardOnce() {
+  const overlay = document.getElementById("id-card-overlay");
+  if (!overlay) return;
+
+  overlay.classList.remove("show");
+  void overlay.offsetWidth;
+  overlay.classList.add("show");
+    setTimeout(() => {
+    overlay.classList.remove("show");
+  }, 1800);
+
+  overlay.addEventListener("click", () => {
+    overlay.classList.remove("show");
+  }, { once: true });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  updateDaysCounter();
+  showRandomLoveMessage();
+  document.getElementById("refresh-btn").addEventListener("click", () => {
+    showRandomLoveMessage();
+  });
+  setupChatBoxFirestore();
+
+  // Quan trọng: gọi hàm này
+  showIdCardOnce();   // hoặc showIdCardOncePerDay();
+});
 
 
 function getTodayKey() {
