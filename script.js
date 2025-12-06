@@ -138,36 +138,6 @@ window.addEventListener("DOMContentLoaded", () => {
   });
   setupChatBoxFirestore(); 
 });
-function showIdCardOnce() {
-  const overlay = document.getElementById("id-card-overlay");
-  if (!overlay) return;
-
-  // Hiện thẻ
-  overlay.classList.add("show");
-
-  // Sau 2.5s tự mờ đi và xóa
-  setTimeout(() => {
-    overlay.classList.remove("show");
-  }, 2500);
-
-  // Cho người dùng chạm bất kỳ chỗ nào để đóng sớm
-  overlay.addEventListener("click", () => {
-    overlay.classList.remove("show");
-  });
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-  updateDaysCounter();
-  showRandomLoveMessage();   // hoặc hàm quote bạn đang dùng
-  document.getElementById("refresh-btn").addEventListener("click", () => {
-    showRandomLoveMessage();
-  });
-
-  setupChatBoxFirestore();
-
-  // GỌI THÊM: hiển thị ID Card khi trang load
-  showIdCardOnce();
-});
 
 
 function getTodayKey() {
