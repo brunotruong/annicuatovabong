@@ -129,15 +129,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 
-window.addEventListener("DOMContentLoaded", () => {
-  updateDaysCounter();
-  showRandomLoveMessage(); 
-
-  document.getElementById("refresh-btn").addEventListener("click", () => {
-    showRandomLoveMessage();
-  });
-  setupChatBoxFirestore(); 
-});
 function showIdCardOnce() {
   const overlay = document.getElementById("id-card-overlay");
   if (!overlay) return;
@@ -162,8 +153,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
   setupChatBoxFirestore();
 
-  // Quan trọng: gọi hàm này
-  showIdCardOnce();   // hoặc showIdCardOncePerDay();
+  showIdCardOnce();  
 });
 
 
