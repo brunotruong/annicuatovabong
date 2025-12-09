@@ -162,7 +162,7 @@ function getTodayKey() {
   const yyyy = d.getFullYear();
   const mm = String(d.getMonth() + 1).padStart(2, "0");
   const dd = String(d.getDate()).padStart(2, "0");
-  return `${yyyy}-${mm}-${dd}`;
+  return `${dd}-${mm}-${yyyy}`;
 }
 
 function renderChat(messages) {
@@ -195,22 +195,31 @@ function setupChatBoxFirestore() {
   const btn = document.getElementById("chat-send-btn");
   if (!input || !btn) return;
 
-  const todayKey = getTodayKey();
-  const messagesCol = collection(db, "dailyMessages", todayKey, "messages");
+  const messagesCol = collection(db, "messages");
 
   const q = query(messagesCol, orderBy("createdAt", "asc"));
   onSnapshot(q, (snapshot) => {
     const msgs = [];
+    const todayKey = getTodayKey();
     snapshot.forEach((docSnap) => {
       const data = docSnap.data();
       if (!data.text) return;
 
-      let timeText = "";
+      let timeText = ""; 
       if (data.createdAt && data.createdAt.toDate) {
         const dt = data.createdAt.toDate();
         const hh = String(dt.getHours()).padStart(2, "0");
         const mi = String(dt.getMinutes()).padStart(2, "0");
-        timeText = `${hh}:${mi}`;
+        const yyyy= dt.getFullYear();
+        const mm = String(dt.getMonth() +  1).padStart (2, "0");
+        const dd = String(dt.getDate()).padStart(2, "0");
+        const msgDateKey = `${dd}-${mm}-${yyyy}`;
+        if (msgDateKey===todayKey) {
+          timeText = `${hh}:${mi}`;
+        }
+        else {
+          timeText = `${dd}/${mm} ${hh}:${mi}`;
+        }
       }
 
       msgs.push({ text: data.text, timeText });
@@ -223,9 +232,15 @@ function setupChatBoxFirestore() {
     const text = input.value.trim();
     if (!text) return;
 
+    const now = new Date();
+    const yyy = now.getFullYear();
+    const mm = String(now.getMonth() + 1).padStart(2,"0");
+    const dd = String(now.getDate()).padStart(2,"0");
+
     await addDoc(messagesCol, {
-      text: text,
+      text,
       createdAt: serverTimestamp(),
+      dateKey: `${dd}-${mm}-${yyy}`
     });
 
     input.value = "";
@@ -240,41 +255,4 @@ function setupChatBoxFirestore() {
   });
 }
 
-  const input = document.getElementById("chat-input");
-  const btn = document.getElementById("chat-send-btn");
-  if (!input || !btn) {}
-
  
-  const todayKey = getTodayKey();
-  const messagesCol = collection(
-    db,
-    "dailyMessages",
-    todayKey,
-    "messages"
-  );
-
-  // Lắng nghe realtime, sắp xếp theo thời gian
-const q = query(messagesCol, orderBy("createdAt", "asc"));
-
-onSnapshot(q, (snapshot) => {
-  const msgs = [];
-  snapshot.forEach((docSnap) => {
-    const data = docSnap.data();
-    if (!data.text) return;
-
-    let timeText = "";
-    if (data.createdAt && data.createdAt.toDate) {
-      const dt = data.createdAt.toDate();
-      const hh = String(dt.getHours()).padStart(2, "0");
-      const mi = String(dt.getMinutes()).padStart(2, "0");
-      timeText = `${hh}:${mi}`;
-    }
-
-    msgs.push({
-      text: data.text,
-      timeText: timeText,
-    });
-  });
-
-  renderChat(msgs);
-});
